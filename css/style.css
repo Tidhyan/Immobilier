@@ -1101,3 +1101,146 @@ section:nth-of-type(even).section-hidden {
     transform: scale(1.03);
     box-shadow: 0 5px 15px rgba(232, 196, 157, 0.4);
 }
+
+/* ================================================= */
+/* === ADAPTATIONS RESPONSIVES (MOBILES/TABLETTES) === */
+/* ================================================= */
+
+@media (max-width: 991px) { /* S'applique aux tablettes et en dessous */
+    
+    /* 1. ON SIMPLIFIE LA BARRE DE NAVIGATION */
+    /* On cache les 3 petites cartes décoratives qui n'ont pas de place */
+    .nav-card {
+        display: none;
+    }
+    
+    /* On s'assure que le menu hamburger s'affiche bien */
+    .navbar-collapse {
+        background: rgba(10, 25, 49, 0.95); /* Fond sombre pour le menu déplié */
+        backdrop-filter: blur(5px);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-top: 1rem;
+    }
+}
+
+
+@media (max-width: 768px) { /* S'applique aux téléphones et petites tablettes */
+
+    /* 2. ON ADAPTE LA TYPOGRAPHIE */
+    /* On réduit la taille des grands titres pour qu'ils ne prennent pas tout l'écran */
+    .hero-title { font-size: 2.8rem; }
+    .page-title { font-size: 2.5rem; }
+    .section-title { font-size: 2.2rem; }
+
+
+    /* 3. ON RÉORGANISE LE JEU DE CARTES "ENGAGEMENTS" */
+    /* On annule l'effet d'éventail et on empile les cartes verticalement */
+    .engagements-deck {
+        flex-direction: column;
+        min-height: auto;
+    }
+    .engagement-card {
+        position: static; /* Annule le positionnement absolu */
+        width: 100%;
+        margin-bottom: 1.5rem;
+        /* On annule toutes les transformations (rotation, déplacement) */
+        transform: none !important; 
+    }
+    /* On désactive les animations de survol sur mobile */
+    .engagements-deck:hover .engagement-card {
+        transform: none !important;
+    }
+
+
+    /* 4. ON SIMPLIFIE RADICALEMENT LE CARROUSEL 3D */
+    /* On désactive la 3D et on transforme le carrousel en un simple fondu */
+    .testimonial-carousel-container {
+        perspective: none; /* Désactive la 3D */
+        height: auto;
+        padding: 0 1rem;
+    }
+    .testimonial-carousel {
+        position: relative;
+        transform-style: flat; /* Annule la preservation 3D */
+        transform: none !important; /* Annule les rotations JS */
+    }
+    .testimonial-card-3d {
+        position: relative; /* Devient un élément normal dans le flux */
+        width: 100%;
+        left: auto;
+        margin: 0;
+        transform: none !important; /* Annule le translateZ */
+        opacity: 1; /* Toutes les cartes sont potentiellement visibles */
+        filter: none; /* Annule le flou */
+        display: none; /* On cache toutes les cartes par défaut */
+    }
+    /* On affiche SEULEMENT la carte active */
+    .testimonial-card-3d.active {
+        display: flex;
+    }
+    /* On déplace les flèches pour qu'elles soient plus accessibles */
+    .testimonial-slider {
+        padding: 0;
+    }
+    .testimonial-nav {
+        font-size: 1.5rem;
+        color: var(--color-text);
+        bottom: -50px;
+        top: auto;
+        transform: none;
+    }
+    .testimonial-nav.prev { left: 35%; }
+    .testimonial-nav.next { right: 35%; }
+}
+
+/* ================================== */
+/* BOUTON FLOTTANT (FAB) POUR MOBILE  */
+/* ================================== */
+#fab-rdv {
+    display: none; /* Caché par défaut sur les grands écrans */
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1050; /* Doit être au-dessus de presque tout */
+    
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    
+    font-size: 1.5rem; /* Taille de l'icône */
+    
+    /* Centrage de l'icône */
+    justify-content: center;
+    align-items: center;
+    
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    animation: fab-appear 0.5s ease-out; /* Animation d'apparition */
+    transition: transform 0.2s ease;
+}
+
+#fab-rdv:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fab-appear {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* On utilise une media query pour l'afficher sur mobile et tablette */
+@media (max-width: 991px) {
+    #fab-rdv {
+        display: flex; /* On le rend visible */
+    }
+}

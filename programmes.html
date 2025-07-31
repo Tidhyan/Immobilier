@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Programmes - IMMO PRESTIGE</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="custom-cursor"></div>
+
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark fixed-top navbar-scrolled"> <div class="container">
+            <a class="navbar-brand" href="index.html">IMMO PRESTIGE</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="programmes.html">Programmes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="savoir-faire.html">Savoir-faire</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+                <button type="button" class="btn btn-outline-light ms-lg-3 btn-cta" data-bs-toggle="modal" data-bs-target="#rdvModal">
+    Prendre RDV
+</button>
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+        <header class="page-header">
+            <div class="container">
+                <h1 class="page-title">Nos Programmes Immobiliers</h1>
+                <p class="page-subtitle">Découvrez l'ensemble de nos réalisations, reflets de notre savoir-faire.</p>
+            </div>
+        </header>
+
+        <section id="gallery-programmes" class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center mb-5">
+                        <div class="filter-controls">
+                            <button type="button" class="btn filter-btn active" data-filter="all">Tous</button>
+                            <button type="button" class="btn filter-btn" data-filter="nouveau">Nouveautés</button>
+                            <button type="button" class="btn filter-btn" data-filter="encours">En cours</button>
+                            <button type="button" class="btn filter-btn" data-filter="livre">Livrés</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="programmes-grid">
+                    <div class="col-lg-4 col-md-6 programme-item" data-category="livre">
+                        <a href="#" class="programme-card-link">
+                            <div class="programme-card">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Villa Céleste">
+                                <div class="programme-status status-livre">Livré</div>
+                                <div class="programme-info">
+                                    <h3 class="programme-title">Villa Céleste</h3>
+                                    <p class="programme-location"><i class="fas fa-map-marker-alt me-2"></i>Cocody</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 programme-item" data-category="nouveau">
+                        <a href="#" class="programme-card-link">
+                           <div class="programme-card">
+                                <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=800&auto=format&fit=crop" alt="Les Jardins d'Assinie">
+                                <div class="programme-status status-nouveau">Nouveau</div>
+                                <div class="programme-info">
+                                    <h3 class="programme-title">Les Jardins d'Assinie</h3>
+                                    <p class="programme-location"><i class="fas fa-map-marker-alt me-2"></i>Assinie-Mafia</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                     <div class="col-lg-4 col-md-6 programme-item" data-category="encours">
+                        <a href="#" class="programme-card-link">
+                            <div class="programme-card">
+                                <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?q=80&w=800&auto=format&fit=crop" alt="Le Carré de Bassam">
+                                <div class="programme-status status-encours">En cours</div>
+                                <div class="programme-info">
+                                    <h3 class="programme-title">Le Carré de Bassam</h3>
+                                    <p class="programme-location"><i class="fas fa-map-marker-alt me-2"></i>Grand-Bassam</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal fade" id="rdvModal" tabindex="-1" aria-labelledby="rdvModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content modal-pro">
+            <div class="row g-0">
+                <div class="col-lg-5 d-none d-lg-block modal-image-col">
+                    </div>
+
+                <div class="col-lg-7">
+                    <div class="modal-form-col">
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
+                        <div class="text-center">
+                            <h3 class="modal-title-pro">Planifions Votre Rêve</h3>
+                            <p class="modal-subtitle-pro">Laissez-nous vos disponibilités. Nous vous contacterons pour confirmer.</p>
+                        </div>
+
+                        <form action="#" class="rdv-form mt-4">
+                            <div class="input-group-custom">
+                                <i class="fas fa-user"></i>
+                                <input type="text" placeholder="Nom complet" class="form-control" required>
+                            </div>
+                            <div class="input-group-custom">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" placeholder="Numéro de téléphone" class="form-control" required>
+                            </div>
+                            <div class="input-group-custom">
+                                <i class="fas fa-calendar-alt"></i>
+                                <input type="text" id="datepicker" class="form-control" placeholder="Choisissez une date..." required>
+                            </div>
+                            <div class="input-group-custom">
+                                <i class="fas fa-clock"></i>
+                                <select class="form-select">
+                                    <option selected disabled>Choisissez une heure</option>
+                                    <option>09:00 - 10:00</option>
+                                    <option>10:00 - 11:00</option>
+                                    <option>11:00 - 12:00</option>
+                                    <option>14:00 - 15:00</option>
+                                    <option>15:00 - 16:00</option>
+                                </select>
+                            </div>
+                            <div class="d-grid mt-4">
+                                <button type="button" class="btn btn-confirm-rdv">Confirmer le Rendez-vous</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer id="main-footer" class="text-white pt-5 section-hidden">
+    <div class="container text-center text-md-start">
+        <div class="row pt-4">
+
+            <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-4">
+                <h5 class="text-uppercase fw-bold mb-4 navbar-brand">
+                    IMMO PRESTIGE
+                </h5>
+                <p>
+                    Constructeurs de père en fils, nous bâtissons des lieux de vie d'exception où l'excellence architecturale rencontre votre confort.
+                </p>
+                <div class="social-icons mt-4">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="footer-title">Navigation</h6>
+                <p><a href="index.html" class="footer-link">Accueil</a></p>
+                <p><a href="programmes.html" class="footer-link">Nos Programmes</a></p>
+                <p><a href="savoir-faire.html" class="footer-link">Savoir-faire</a></p>
+                <p><a href="contact.html" class="footer-link">Contact</a></p>
+            </div>
+
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <h6 class="footer-title">Contact</h6>
+                <p><i class="fas fa-home me-3"></i>Abidjan, Cocody Cité des Arts</p>
+                <p><i class="fas fa-envelope me-3"></i>contact@immoprestige.ci</p>
+                <p><i class="fas fa-phone me-3"></i>+225 07 00 00 00 00</p>
+            </div>
+
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <h6 class="footer-title">Newsletter</h6>
+                <p>Recevez nos offres exclusives et l'actualité de nos programmes.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="form-control" placeholder="Votre adresse email">
+                    <button type="submit" class="btn-newsletter"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright-bar text-center p-3">
+        © 2025 IMMO PRESTIGE - Tous droits réservés. Conçu avec passion.
+    </div>
+</footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/fr.js"></script> <script src="js/script.js"></script>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>

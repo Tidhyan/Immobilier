@@ -1,0 +1,1103 @@
+/* ===== FONDATIONS & VARIABLES CSS ===== */
+:root {
+    /* Palette de couleurs "Hyper Pro" */
+    --color-primary: #0A1931;   /* Bleu nuit profond */
+    --color-secondary: #E8C49D; /* Doré / Ocre */
+    --color-text: #F0F0F0;      /* Blanc cassé */
+    --color-background: #FFFFFF;
+
+    /* Typographie */
+    --font-titles: 'Playfair Display', serif;
+    --font-text: 'Lato', sans-serif;
+}
+/* ================================== */
+/* CURSEUR PERSONNALISÉ               */
+/* ================================== */
+/* On cache le curseur par défaut sur tout le site */
+body {
+    cursor: none;
+    font-family: var(--font-text);
+    background-color: var(--color-background);
+}
+.custom-cursor {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--color-secondary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%); /* Pour centrer le curseur */
+    pointer-events: none; /* Pour pouvoir cliquer à travers */
+    transition: all 0.1s ease-out;
+    z-index: 10000;
+    mix-blend-mode: difference; /* Effet très stylé */
+}
+
+/* Style du curseur au survol d'un lien ou bouton */
+.custom-cursor.hover-effect {
+    transform: translate(-50%, -50%) scale(2.5);
+    background-color: var(--color-secondary);
+}
+
+/* ===== HEADER / NAVBAR PERSONNALISÉ ===== */
+#mainNav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: transparent; /* Transparent au départ */
+    transition: all 0.3s ease-in-out;
+}
+
+#mainNav.navbar-scrolled {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--color-primary);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+#mainNav .navbar-brand {
+    font-family: var(--font-titles);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+#mainNav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+/* Effet de surlignage subtil au survol */
+#mainNav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--color-secondary);
+    transition: width 0.3s ease-in-out;
+}
+
+#mainNav .nav-link:hover,
+#mainNav .nav-link.active {
+    color: var(--color-text);
+}
+
+#mainNav .nav-link:hover::after {
+    width: 60%;
+}
+
+/* Bouton d'appel à l'action personnalisé */
+.btn-cta {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+    border-width: 2px;
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-secondary);
+}
+
+
+/* ===== BANNIERE HERO AVEC EFFET KEN BURNS ===== */
+#hero-carousel {
+    height: 100vh; /* La bannière prend toute la hauteur de l'écran */
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-item {
+    height: 100vh;
+}
+
+/* Div pour l'image de fond qui sera animée */
+.carousel-background {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 25s linear; /* Ralentit la transition entre les slides */
+}
+
+/* L'animation Ken Burns */
+@keyframes ken-burns {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    100% {
+        transform: scale(1.1) rotate(1deg); /* Zoom et légère rotation */
+    }
+}
+
+/* Appliquer l'animation SEULEMENT sur le slide actif */
+.carousel-item.active .carousel-background {
+    animation: ken-burns 15s ease-out forwards; /* Durée de l'effet */
+}
+
+/* Superposition sombre pour la lisibilité du texte */
+.carousel-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 25, 49, 0.5); /* Bleu nuit semi-transparent */
+    z-index: 1;
+}
+
+/* Conteneur pour le texte de la légende */
+.carousel-container {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Au-dessus de la superposition */
+}
+
+.carousel-caption {
+    position: static; /* On annule la position par défaut de Bootstrap */
+    text-align: center;
+    color: var(--color-text);
+    padding: 2rem;
+}
+
+.hero-title {
+    font-family: var(--font-titles);
+    font-size: 4.5rem; /* Taille de police imposante */
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Ajustements pour les écrans plus petits */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    #mainNav .nav-link {
+        padding: 0.8rem 1rem;
+        text-align: center;
+    }
+}
+
+/* ===== SECTION MODELES "HYPER PRO" ===== */
+#modeles {
+    background-color: #f8f9fa; /* Un fond très légèrement grisé pour contraster */
+}
+
+.section-title {
+    font-family: var(--font-titles);
+    font-size: 2.8rem;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-family: var(--font-text);
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* ===== CARTE MAISON PERSONNALISÉE ===== */
+.house-card-pro {
+    background-color: var(--color-background);
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transition avec un effet "ressort" */
+}
+
+.house-card-pro:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Conteneur pour les images superposées */
+.card-image-wrapper {
+    position: relative;
+    width: 100%;
+    /* On force un ratio 4:3 pour l'image */
+    padding-top: 75%; /* 3 / 4 = 0.75 */
+}
+
+.house-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre la zone sans se déformer */
+    opacity: 0; /* Toutes les images sont invisibles par défaut */
+    transition: opacity 0.6s ease-in-out; /* LA transition de fondu ! */
+}
+
+.house-image.active {
+    opacity: 1; /* Seule l'image active est visible */
+}
+
+.card-body-pro {
+    padding: 2rem;
+}
+
+.card-title-pro {
+    font-family: var(--font-titles);
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-text-pro {
+    font-family: var(--font-text);
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+
+/* ===== TIMELINE D'INTERACTION ===== */
+.card-timeline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 0 1rem;
+    position: relative;
+}
+
+/* La ligne grise en arrière-plan */
+.card-timeline .timeline-line {
+    position: absolute;
+    top: 8px; /* Centre verticalement sur les points */
+    left: 1rem;
+    right: 1rem;
+    height: 2px;
+    background-color: #e9ecef;
+    z-index: 1;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2; /* Pour être au-dessus de la ligne */
+}
+
+.timeline-dot {
+    width: 18px;
+    height: 18px;
+    background-color: #ced4da;
+    border-radius: 50%;
+    border: 3px solid var(--color-background);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-dot:hover {
+    background-color: var(--color-secondary);
+}
+
+.timeline-dot.active {
+    background-color: var(--color-primary);
+    transform: scale(1.2);
+}
+
+.timeline-label {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: #6c757d;
+}
+/* ===== SECTION ENGAGEMENTS (JEU DE CARTES INTERACTIF) ===== */
+#engagements {
+    background-color: #f8f9fa;
+}
+
+.engagements-deck {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    position: relative;
+    perspective: 1000px; /* Active la perspective 3D pour les enfants */
+}
+
+.engagement-card {
+    position: absolute;
+    width: 320px;
+    padding: 2rem;
+    background: var(--color-background);
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0s 0.25s;
+    will-change: transform; /* Optimisation pour les animations */
+}
+
+.engagement-card .engagement-icon {
+    font-size: 3rem; color: var(--color-secondary); margin-bottom: 1.5rem;
+}
+.engagement-card .engagement-title {
+    font-family: var(--font-titles); color: var(--color-primary); font-size: 1.5rem;
+}
+
+/* Position initiale des cartes */
+.card-1 { transform: translateX(-120px) rotate(-15deg); z-index: 1; }
+.card-2 { transform: translateY(-20px); z-index: 2; }
+.card-3 { transform: translateX(120px) rotate(15deg); z-index: 1; }
+
+/* Animation au survol du conteneur */
+.engagements-deck:hover .card-1 {
+    transform: translateX(-220px) rotate(-20deg) scale(0.9); z-index: 1;
+}
+.engagements-deck:hover .card-3 {
+    transform: translateX(220px) rotate(20deg) scale(0.9); z-index: 1;
+}
+
+/* Animation au survol de chaque carte individuelle */
+.engagements-deck .engagement-card:hover {
+    transform: translateY(-20px) scale(1.1);
+    z-index: 3;
+    transition-delay: 0s;
+}
+/* ===== SECTION TÉMOIGNAGES (CARROUSEL 3D - VERSION FINALE) ===== */
+#temoignages {
+    background: var(--color-primary);
+    overflow: hidden;
+    position: relative;
+}
+
+/* On ajoute un léger dégradé en fond pour plus de profondeur */
+#temoignages::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(232, 196, 157, 0.1), transparent 70%);
+}
+
+.testimonial-carousel-container {
+    height: 350px; /* On donne un peu plus de hauteur pour le reflet */
+    position: relative;
+    perspective: 1500px; /* Augmenter la perspective pour moins de distorsion */
+    z-index: 2;
+}
+
+.testimonial-carousel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.68, -0.6, 0.32, 1.6); /* Easing avec effet "ressort" */
+}
+
+.testimonial-card-3d {
+    position: absolute;
+    /* On utilise une taille fixe et un centrage par marge négative, c'est plus stable */
+    width: 400px;
+    height: 250px;
+    left: 50%;
+    margin-left: -200px; /* Moitié de la largeur */
+
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px); /* Effet verre dépoli */
+    color: var(--color-primary);
+    border-radius: 10px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    /* Transition pour quand la carte revient au centre */
+    transition: opacity 1s, filter 1s;
+    opacity: 0.5; /* Opacité par défaut pour les cartes sur le côté */
+    filter: blur(3px);
+}
+
+/* La carte active est parfaitement nette et opaque */
+.testimonial-carousel .active {
+    opacity: 1;
+    filter: blur(0px);
+}
+
+/* Animation du contenu à l'intérieur de la carte active */
+.testimonial-card-3d .testimonial-text,
+.testimonial-card-3d .testimonial-author {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.testimonial-carousel .active .testimonial-text {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s; /* Le texte apparait en premier */
+}
+.testimonial-carousel .active .testimonial-author {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s; /* L'auteur apparait juste après */
+}
+
+.testimonial-card-3d .testimonial-text { font-style: italic; font-size: 1.1rem; line-height: 1.6; }
+.testimonial-card-3d .testimonial-author { font-family: var(--font-titles); margin-top: 1.5rem; color: var(--color-primary); font-weight: bold; }
+
+
+/* ===== EFFET DE SCÈNE AVEC REFLET ===== */
+.testimonial-card-3d::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; /* Position du reflet */
+    left: 10%;
+    width: 80%;
+    height: 80px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), transparent);
+    transform: scaleY(1);
+    filter: blur(15px);
+    z-index: -1;
+}
+
+/* Contrôles de navigation */
+.testimonial-controls-3d { text-align: center; margin-top: 1rem; position: relative; z-index: 3; }
+.btn-3d-nav {
+    background: transparent; border: 2px solid var(--color-secondary); color: var(--color-secondary);
+    font-size: 1.2rem; width: 60px; height: 60px; border-radius: 50%;
+    margin: 0 1rem; cursor: pointer; transition: all 0.3s ease;
+}
+.btn-3d-nav:hover { background: var(--color-secondary); color: var(--color-primary); transform: scale(1.1); }
+
+/* ================================== */
+/* STYLES DU FOOTER                   */
+/* ================================== */
+#main-footer {
+    background-color: var(--color-primary);
+    font-size: 0.9rem;
+}
+
+.footer-title {
+    font-family: var(--font-titles);
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.footer-link {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-text);
+    padding-left: 5px;
+}
+
+#main-footer p {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Icônes des réseaux sociaux */
+.social-icons .social-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255,255,255,0.1);
+    color: var(--color-text);
+    margin-right: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons .social-icon:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    transform: translateY(-5px);
+}
+
+/* Formulaire de la Newsletter */
+.newsletter-form {
+    position: relative;
+    max-width: 300px;
+}
+.newsletter-form .form-control {
+    background-color: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 50px;
+    padding-left: 1.2rem;
+}
+.newsletter-form .form-control::placeholder { color: rgba(255,255,255,0.5); }
+.newsletter-form .form-control:focus {
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: none;
+    border-color: var(--color-secondary);
+}
+
+.btn-newsletter {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-newsletter:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Barre de Copyright */
+.copyright-bar {
+    background-color: rgba(0,0,0,0.2);
+    font-size: 0.8rem;
+    margin-top: 2rem;
+}
+
+/* ================================================= */
+/* OPTION 1 : ANIMATION PAR GLISSEMENT LATÉRAL       */
+/* ================================================= */
+.section-hidden {
+    opacity: 0;
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: opacity, transform;
+}
+
+/* On cible les sections impaires (1, 3, 5...) */
+section:nth-of-type(odd).section-hidden {
+    transform: translateX(-100px);
+}
+
+/* On cible les sections paires (2, 4, 6...) */
+section:nth-of-type(even).section-hidden {
+    transform: translateX(100px);
+}
+/* ================================== */
+/* STYLES PAGE "NOS PROGRAMMES"       */
+/* ================================== */
+
+/* En-tête de la page */
+.page-header {
+    padding-top: 150px;
+    padding-bottom: 80px;
+    background: var(--color-primary);
+    text-align: center;
+    color: var(--color-text);
+}
+.page-title {
+    font-family: var(--font-titles);
+    font-size: 3.5rem;
+}
+.page-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.8);
+}
+
+/* Barre de filtres */
+.filter-controls .filter-btn {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #666;
+    margin: 0 5px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+.filter-controls .filter-btn:hover {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border-color: var(--color-secondary);
+}
+.filter-controls .filter-btn.active {
+    background: var(--color-primary);
+    color: var(--color-text);
+    border-color: var(--color-primary);
+}
+
+/* Cartes de projet */
+.programme-item {
+    transition: transform 0.4s ease, opacity 0.4s ease; /* Pour l'animation de filtre */
+}
+
+/* Classe pour cacher les éléments filtrés */
+.programme-item.hide {
+    transform: scale(0.8);
+    opacity: 0;
+    width: 0; /* Permet de réorganiser la grille */
+    padding: 0;
+    margin: 0;
+}
+
+
+.programme-card-link { text-decoration: none; }
+
+.programme-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    transition: all 0.4s ease;
+}
+.programme-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.programme-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.programme-card .programme-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+}
+.programme-title {
+    font-family: var(--font-titles);
+    font-size: 1.5rem;
+    margin: 0;
+}
+.programme-location {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.programme-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-radius: 50px;
+    color: white;
+}
+.status-livre { background: var(--color-primary); }
+.status-nouveau { background: var(--color-secondary); color: var(--color-primary); }
+.status-encours { background: #ffc107; color: var(--color-primary); }
+
+/* ================================== */
+/* STYLES PAGE "SAVOIR-FAIRE"         */
+/* ================================== */
+
+.timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* La ligne centrale de la timeline */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background-color: var(--color-secondary);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1.5px;
+}
+
+/* Conteneur pour chaque événement de la timeline */
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    
+    /* Pour l'animation d'apparition */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 0.2s; /* Petit délai pour l'effet */
+}
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Positionnement alterné : gauche/droite */
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+/* Le point sur la ligne centrale */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -12.5px;
+    background-color: white;
+    border: 4px solid var(--color-secondary);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+.timeline-item:nth-child(even)::after {
+    left: -12.5px;
+}
+
+/* Le contenu de la boîte */
+.timeline-content {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+.timeline-step-number {
+    font-family: var(--font-titles);
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--color-secondary);
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    opacity: 0.2;
+}
+.timeline-title {
+    font-family: var(--font-titles);
+    color: var(--color-primary);
+}
+
+/* Responsive pour les écrans plus petits */
+@media screen and (max-width: 768px) {
+    .timeline::after { left: 31px; }
+    .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px;}
+    .timeline-item:nth-child(even) { left: 0; }
+    .timeline-item::after { left: 18px; }
+}
+
+/* ================================== */
+/* STYLES PAGE "CONTACT"              */
+/* ================================== */
+
+.contact-info {
+    background: var(--color-primary);
+    color: var(--color-text);
+    padding: 2.5rem;
+    border-radius: 10px;
+    height: 100%;
+}
+.contact-info-title {
+    font-family: var(--font-titles);
+}
+.contact-info-text {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+}
+
+.contact-details {
+    list-style: none;
+    padding: 0;
+}
+.contact-details li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.9);
+}
+.contact-details i {
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+    width: 30px;
+    margin-top: 4px;
+}
+
+/* Formulaire */
+.contact-form .form-label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+.contact-form .form-control {
+    border: 1px solid #ccc;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+}
+.contact-form .form-control:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.25rem rgba(10, 25, 49, 0.25);
+}
+.btn-submit-contact {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-submit-contact:hover {
+    background-color: #000;
+    transform: scale(1.05);
+}
+
+/* Carte Google Maps */
+#map-section iframe {
+    filter: grayscale(1); /* Effet stylé en noir et blanc */
+    transition: filter 0.3s ease;
+}
+#map-section iframe:hover {
+    filter: grayscale(0);
+}
+
+/* ================================== */
+/* PRE-LOADER                         */
+/* ================================== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+.preloader-logo {
+    font-family: var(--font-titles);
+    font-size: 2rem;
+    color: var(--color-secondary);
+    opacity: 0;
+    animation: fadeInLogo 1.5s ease-out forwards;
+}
+@keyframes fadeInLogo {
+    to { opacity: 1; }
+}
+/* Classe pour cacher le preloader */
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+/* ================================== */
+/* ANIMATION D'ENTRÉE DE LA NAVBAR    */
+/* ================================== */
+
+/* On définit l'animation d'apparition */
+@keyframes nav-item-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Par défaut, on cache tous les éléments à animer */
+.nav-anim-item, .nav-card {
+    opacity: 0;
+}
+
+/* Quand la navbar est prête, on lance les animations */
+#mainNav.animation-started .nav-anim-item,
+#mainNav.animation-started .nav-card {
+    animation-name: nav-item-appear;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards; /* Garde l'état final de l'animation */
+    animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* === LA SÉQUENCE DÉCALÉE === */
+/* 1. Les liens du menu, de droite à gauche */
+#mainNav.animation-started .nav-anim-item:nth-last-child(2) { animation-delay: 0.5s; } /* Contact */
+#mainNav.animation-started .nav-anim-item:nth-last-child(3) { animation-delay: 0.65s; } /* Savoir-faire */
+#mainNav.animation-started .nav-anim-item:nth-last-child(4) { animation-delay: 0.8s; } /* Programmes */
+#mainNav.animation-started .nav-anim-item:nth-last-child(5) { animation-delay: 0.95s; } /* Accueil */
+/* 2. Le bouton RDV (qui est le dernier enfant dans sa div) */
+#mainNav.animation-started .btn-cta.nav-anim-item { animation-delay: 0.5s; }
+
+/* 3. Le logo */
+#mainNav.animation-started .navbar-brand.nav-anim-item { animation-delay: 1.2s; }
+
+/* 4. Les cartes décoratives (le "Wouaaa") */
+#mainNav.animation-started .nav-card.card-left { animation-delay: 1.5s; }
+#mainNav.animation-started .nav-card.card-right-top { animation-delay: 1.6s; }
+#mainNav.animation-started .nav-card.card-right-bottom { animation-delay: 1.7s; }
+
+
+/* === STYLE DES CARTES DÉCORATIVES === */
+.nav-card {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: -1; /* Pour être derrière le contenu de la navbar */
+}
+
+.card-left {
+    width: 60px; height: 80px;
+    bottom: -100px; /* Position de départ en bas */
+    left: 100px;
+    background-image: url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=400&auto=format&fit=crop');
+}
+
+.card-right-top {
+    width: 80px; height: 50px;
+    top: -70px; /* Position de départ en haut */
+    right: 150px;
+    background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=400&auto=format&fit=crop');
+}
+
+.card-right-bottom {
+    width: 50px; height: 70px;
+    bottom: -90px; /* Position de départ en bas */
+    right: 80px;
+    background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=400&auto=format&fit=crop');
+}
+/* ================================== */
+/* STYLES DU POPUP DE RDV (VERSION PRO) */
+/* ================================== */
+
+.modal-pro {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden; /* Important pour les coins arrondis */
+    background-color: var(--color-primary);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+}
+
+/* On supprime le fond par défaut de Bootstrap */
+.modal-backdrop.show {
+    opacity: 0.8;
+    backdrop-filter: blur(5px);
+}
+
+/* Colonne de l'image */
+.modal-image-col {
+    background-image: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    min-height: 550px;
+}
+
+/* Colonne du formulaire */
+.modal-form-col {
+    padding: 3rem;
+    position: relative;
+    color: var(--color-text);
+}
+
+/* Bouton fermer personnalisé */
+.modal-form-col .btn-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+.modal-form-col .btn-close:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+.modal-title-pro {
+    font-family: var(--font-titles);
+    font-size: 2.2rem;
+    color: white;
+}
+.modal-subtitle-pro {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Groupe d'input avec icône */
+.input-group-custom {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.input-group-custom i {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.4);
+}
+
+/* Style des champs du formulaire */
+.rdv-form .form-control, .rdv-form .form-select {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    padding: 1rem 1rem 1rem 3rem; /* Espace pour l'icône */
+    color: white;
+    font-family: var(--font-text);
+}
+.rdv-form .form-control::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+.rdv-form .form-control:focus, .rdv-form .form-select:focus {
+    background: rgba(255,255,255,0.2);
+    box-shadow: none;
+    border-color: var(--color-secondary);
+}
+
+/* Style spécifique pour le calendrier flatpickr */
+.flatpickr-input {
+    cursor: pointer;
+}
+
+/* Bouton de confirmation */
+.btn-confirm-rdv {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: var(--font-text);
+    transition: all 0.3s ease;
+}
+.btn-confirm-rdv:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(232, 196, 157, 0.4);
+}
